@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.generation.blogpessoal.model.Postagem;
 
 
-@Repository
+@Repository //necessária por boas práticas e validação do robo
 public interface PostagemRepository extends JpaRepository<Postagem, Long> {
    public List<Postagem> findAllByTituloContainingIgnoreCase (String titulo);
    
