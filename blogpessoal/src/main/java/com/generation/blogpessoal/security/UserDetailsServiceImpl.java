@@ -1,5 +1,5 @@
 package com.generation.blogpessoal.security;
-
+//implementa o user detailsimplt 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;

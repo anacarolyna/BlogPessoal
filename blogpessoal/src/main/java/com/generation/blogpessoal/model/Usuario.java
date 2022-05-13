@@ -25,7 +25,7 @@ public class Usuario {
 	
 	private String nome;
 	
-	@NotNull
+	@NotNull 
 	@Email(message = "O usuário deve ser um email valido ex:maria@email.com")
 	private String usuario;
 	
@@ -37,6 +37,21 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario" , cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
+	
+	// Metodos construtores para testes
+	//importante seguir a mesma ordem das declarações dos atributos de usuario acima 
+	//construtor cheio
+	public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.foto = foto;
+	}
+	
+	//construtor vazio
+	public Usuario() {}
+
 
 	public Long getId() {
 		return id;

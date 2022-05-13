@@ -32,10 +32,18 @@ public class TemaController {
 	public ResponseEntity<List<Tema>> GetAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity <Tema> getById(@PathVariable Long id) {
+		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
+				                      .orElse(ResponseEntity.notFound().build());
+	}
+	
 	@PostMapping
 	public ResponseEntity<Tema> postTema (@Valid @RequestBody Tema tema) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(tema));
 	}
+	
 	  @PutMapping
 	    public ResponseEntity <Tema> put(@RequestBody Tema tema) {
 	        return ResponseEntity.status(HttpStatus.OK).body(repository.save(tema));

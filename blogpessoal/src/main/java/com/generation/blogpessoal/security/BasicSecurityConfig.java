@@ -20,22 +20,22 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-	@Override
+	@Override 
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(userDetailsService);   //usuario em memoria PARA TESTE
 		auth.inMemoryAuthentication()
-		.withUser("root")
+		.withUser("root")//não precisa estar cadastrado no banco de dados mas é um user válido
 		.password(passwordEncoder().encode("root"))
-		.authorities("ROLE_USER");
+		.authorities("ROLE_USER");// usuário válido
 	}
 
 	//notação que deixa uma função acessível globalmente(em toda a minha aplicação)
-	@Bean 
-	public PasswordEncoder passwordEncoder() {
+	@Bean // ter ou não ter depende da aplicação
+	public PasswordEncoder passwordEncoder() { //como se fosse a classe main de segurança
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Override
+	@Override// aqui seria o que você precisa testar
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
 		.antMatchers("/usuarios/logar").permitAll()
