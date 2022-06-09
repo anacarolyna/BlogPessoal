@@ -35,6 +35,11 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
+	@GetMapping("/{id}")
+	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
+		return usuarioRepository.findById(id).map(resp -> ResponseEntity.ok(resp))
+				                      .orElse(ResponseEntity.notFound().build());
+	}
 	
 	@GetMapping("/all")
 	public ResponseEntity<List<Usuario>> getAll() {
